@@ -66,13 +66,11 @@ pop_municipio <- pop_municipio %>%
                                          pattern = "^([0-9.]+)\\(\\d+\\)$",
                                          replacement = "\\1"))   # retira as obsevções ()
 # Verifica
-pop_municipio[135,5]
-
-
+pop_municipio[135,5] # modidicado
 
 pop_municipio<- pop_municipio %>%
     mutate(ESTIMATIVA_2021 = str_remove_all(ESTIMATIVA_2021,
-                                            pattern = "\\D")) # retira os pontos
+                                            pattern = "\\D")) # retira os pontos entre milhar e centena
 # Verifica
 pop_municipio[135,5] # modificado 
 
@@ -86,7 +84,7 @@ head(pop_municipio)
 tail(pop_municipio)
 
 # Para remover essas observações do final da tabela
-pop_municipio<- pop_municipio[complete.cases(pop_municipio), ]  # Mantem as linhas com valores em todas as colunas 
+pop_municipio<- pop_municipio[complete.cases(pop_municipio), ]  # Mantem as linhas que apresentam valores em todas as colunas 
 dim(pop_municipio) # 5570 municipios brasileiros
 tail(pop_municipio) # o último municipio deve ser Brasília
 
