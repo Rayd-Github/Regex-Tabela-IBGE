@@ -1,18 +1,13 @@
-# Indicando o diretório
-setwd("~/Dropbox/24 - GitHub/Expressoes Regulares")
+Na página do IBGE (https://www.ibge.gov.br/estatisticas/downloads-estatisticas.html) buscar na pasta " Estimativas_de_Populacao" 
+o arquivo "estimativa_dou_2021.xls"
 
-# https://www.ibge.gov.br/estatisticas/downloads-estatisticas.html
-# Pasta Estimativas_de_Populacao
-# estimativa_dou_2021.xls 
+Perceba que o arquivo excel contêm duas planilhas (Estados e Municipios) e em ambas a tabela de estimativa de crescimento populacional 2021 contêm
+1) Cabeçalho
+2) Rodapé
+3) Indices entre parênteses
+4) Numeros como caractere e sem padronização
 
-# Perceba que o arquivo excel contêm duas planilhas (Estados e Municipios) e em ambas
-# a tabela de estimativa de crescimento
-# populacional 2021 contêm
-# 1) Cabeçalho
-# 2) Rodapé
-# 3) Indices entre parênteses
-# 4) Numeros como caractere e sem padronização
-
+# No R
 # Instalando os pacotes
 
 if(!require("sf")) install.packages("sf", dep=T); library(sf)
@@ -43,13 +38,13 @@ pop_municipio<- read_excel("estimativa_dou_2021.xls", sheet = 2, skip = 1) # lê
 head(pop_municipio)
 names(pop_municipio)
 
-# alterando nomes de colunas (retirando acentos das palavras e padronizando nomes para unir as bases)
+# Alterando os nomes de colunas (retirando acentos das palavras)
 colnames(pop_municipio)[2]<- "COD.UF"
 colnames(pop_municipio)[3]<- "COD.MUNIC"
 colnames(pop_municipio)[4]<-"MUNICIPIO"
 colnames(pop_municipio)[5]<-"ESTIMATIVA_2021" # substituir o nome por est_2021 (POPULAÇÃO ESTIMADA)
 
-# Visualisando a base de dados
+# Visualizando a base de dados
 View(pop_municipio)
 
 # Casos a serem resolvidos na coluna 'ESTIMATIVA_2021'
