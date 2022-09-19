@@ -85,3 +85,19 @@ tail(pop_municipio) # o último municipio deve ser Brasília
 
 # Salvando o arquivo 
 pop_municipio <- write.csv(pop_municipio, "pop_municipio_corrigida.csv", row.names = FALSE)
+
+# Colocando a referência :)
+autora<- "Rayd Ivanoff"
+
+# Apenas a primeir letra do nome primeiro nome com sobrenome.
+autora %>% str_replace(pattern = "^([[:alpha:]]+).* ([[:alpha:]]+)$",
+                  replacement = "\\1 \\2")
+
+# A primeira letra.
+nome<- autora %>% str_replace(pattern = "^(.).*", replacement = "\\1")
+
+# Apenas o sobrenome.
+sobrenome<-autora %>% str_replace(pattern = ".* ([[:alpha:]]+)$", replacement = "\\1")
+
+# Referência
+str_c(sobrenome, ", ", nome)
